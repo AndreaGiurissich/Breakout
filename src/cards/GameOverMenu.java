@@ -1,4 +1,5 @@
 package cards;
+
 import main.BreakoutGame;
 import main.CardLayoutPanel;
 import utils.ImageLoader;
@@ -15,39 +16,38 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class GameWin extends JPanel {
+public class GameOverMenu extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
 	private BufferedImage sfondo;
-	private JButton homeButton;
 	private JButton retryButton;
-	private JLabel winlb, scorelb;
-
+	private JButton homeButton;
+	private JLabel looselb, scorelb;
+	
 	private static final int WIDTH = 630;
 	private final static int HEIGHT = 400;
 	public static final String SFONDO = "/immagini/star_pixel.png";
 
-	public GameWin(CardLayoutPanel c, BreakoutGame game) {
+	public GameOverMenu(CardLayoutPanel c, BreakoutGame game) {
+		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		ImageLoader loader = new ImageLoader();
 		
-		winlb = new JLabel("YOU WON!");
-		winlb.setFont(new Font("Monospaced", Font.BOLD, 60));
-		winlb.setForeground(Color.WHITE);
-		winlb.setBounds(180, 150, WIDTH, 55);
+		looselb = new JLabel("GAME OVER!");
+		looselb.setFont(new Font("Monospaced", Font.BOLD, 70));
+		looselb.setForeground(Color.RED);
+		looselb.setBounds(100, 140, WIDTH, 55);
 		
 		scorelb = new JLabel("Your score:" + game.getScore());
 		scorelb.setFont(new Font("Monospaced", Font.BOLD, 30));
 		scorelb.setForeground(Color.WHITE);
 		scorelb.setBounds(200, 200, WIDTH, 55);
-		
-		setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		ImageLoader loader = new ImageLoader();
 
 		setLayout(null);
 
 		sfondo = loader.loadImg(SFONDO);
-		
-		retryButton = new JButton("Level Select");
+
+		retryButton = new JButton("Retry");
 		retryButton.setFont(new Font("Monospaced", Font.BOLD, 20));
 		retryButton.setForeground(Color.black);
 		retryButton.setBackground(Color.green);
@@ -57,7 +57,7 @@ public class GameWin extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.changeScreen4();
+				c.changeScreen1();
 			}
 		});
 		this.add(retryButton);
@@ -79,8 +79,6 @@ public class GameWin extends JPanel {
 		this.add(homeButton);
 	}
 
-	
-
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -88,13 +86,10 @@ public class GameWin extends JPanel {
 		if (sfondo != null) {
 			g.drawImage(sfondo, 0, 0, getWidth(), getHeight(), this);
 			
-			this.add(winlb);
+			this.add(looselb);
 			this.add(scorelb);
 		}
 
 	}
+
 }
-
-
-
-
