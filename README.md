@@ -13,10 +13,6 @@ This game is a classic implementation of Breakout using Java's Swing framework. 
 - CardLayout-based screen navigation (e.g. main menu, game screen, game over)
 - Simple and extensible code structure for learning and experimentation
 
-## 🗂️ Structure
-
-
-
 ## 🧩 Level Design
 
 Levels are created using plain text files with matrices representing brick layouts. Each number corresponds to a different brick type or empty space.
